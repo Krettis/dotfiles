@@ -1,0 +1,57 @@
+#basic profile settings
+alias reloadp=". ~/.profile"
+alias editp="vim ~/.profile"
+
+startups=(.welcome .server)
+export PATH=/Users/JL/pear/bin:$PATH
+export PATH="/Applications/XAMPP/xamppfiles/bin:$PATH"
+export PATH="/Users/krettis/.composer/vendor/bin:$PATH"
+
+
+#functions
+alias wget='curl -O'
+alias listports='lsof -i | grep LISTEN'
+alias hidefiles='defaults delete com.apple.finder AppleShowAllFiles; killall -HUP Finder'
+alias showfiles='defaults write com.apple.finder AppleShowAllFiles -boolean true; killall -HUP Finder'
+alias ffprofile='/Applications/Firefox.app/Contents/MacOS/firefox-bin -p'
+alias ..="cd .."
+
+
+function test(){
+DIR="$1"
+ 
+if [ $# -ne 1 ]
+then
+	echo "Usage: $0 {dir-name}"
+	exit 1
+fi
+ 
+if [ -d "$DIR" ]
+then
+	echo "$DIR directory  exists!"
+else
+	echo "$DIR directory not found!"
+fi
+}
+
+#include welcome message
+for item in ${startups[*]}
+do
+    printf "   %s\n" $item
+. ~/$item
+done
+
+
+
+#JL$ grep -rl --exclude-dir=.git --exclude-dir=Static getFileIcon
+
+# Setting PATH for Python 2.7
+# The orginal version is saved in .bash_profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:${PATH}"
+export PATH
+
+export PATH=/Applications/SenchaSDKTools-2.0.0-Developer-Preview:$PATH
+
+export PATH=/Applications/SenchaSDKTools-2.0.0-Developer-Preview/command:$PATH
+
+export PATH=/Applications/SenchaSDKTools-2.0.0-Developer-Preview/jsbuilder:$PATH
