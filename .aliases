@@ -6,18 +6,19 @@ alias .....="cd ../../../.."
 alias ~="cd ~" # `cd` is probably faster to type though
 alias -- -="cd -"
 
-# Shortcuts
-alias d="cd ~/Documents/Dropbox"
+# locations
+alias db="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
-alias p="cd ~/projects"
+
+# Shortcuts
 alias g="git"
 alias h="history"
 alias j="jobs"
-alias cddot="cd $DOTFILE_DIRECTORY"
+alias cddot="cd ${DOTFILE_DIRECTORY}"
 
 #editbash and bootstrap
-alias bootbash=". $DOTFILE_DIRECTORY/bootstrap.sh"
+alias bootbash=". ${DOTFILE_DIRECTORY}bootstrap.sh"
 alias editalias="vim $DOTFILE_DIRECTORY.aliases"
 alias reloadp=". ~/.bash_profile"
 
