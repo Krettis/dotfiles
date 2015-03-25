@@ -124,7 +124,7 @@ alias plistbuddy="/usr/libexec/PlistBuddy"
 alias badge="tput bel"
 
 # Spotify play / stop / pause
-alias spotify="osascript ~/.apps/SpotifyControl.scpt"
+alias spotify="osascript ~/.appscripts/SpotifyControl.scpt"
 
 # Firefox 
 # profile
