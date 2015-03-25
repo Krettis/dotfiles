@@ -1,0 +1,54 @@
+#!/bin/bash
+##################
+# Docker Function
+##################
+
+
+docker-ip(){
+	boot2docker ip 2> /dev/null
+}
+
+docker-removeall(){
+	docker kill $(dkrsall)
+	docker rm $(dkrsall)
+}
+
+docker-remove(){
+	docker kill $1
+	docker rm $1
+}
+
+
+docker-catch(){
+    docker ps -a | grep $1 | awk {'print $1'}
+}
+
+
+docker-cleanup(){
+	c_id=$(docker-catch $1)
+	if [ -n "$c_id" ]; then
+		docker-remove $c_id
+		printf "Cleaned up %s with id : %s\n" $1 $c_id
+	fi
+}
+
+
+docker-wash(){
+	containers=$@
+	
+	printf "Cleaning up all listed containers.\n"
+	for item in ${containers[*]}
+	do
+		printf "\nContainer :: %s" $item
+		docker-cleanup $item
+	done
+	printf "\nDone...\n\n"
+}
+
+##################
+# Docker ALIAS
+##################
+
+alias dkrsall="docker ps -aq"
+alias dkrlatest="docker ps -ql"
+
