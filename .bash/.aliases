@@ -19,8 +19,8 @@ alias cddot="cd ${DOTFILE_DIRECTORY}"
 
 #editbash and bootstrap
 alias bootbash=". ${DOTFILE_DIRECTORY}bootstrap.sh"
-alias editalias="vim $DOTFILE_DIRECTORY.bash/.aliases"
-alias editf="vim $DOTFILE_DIRECTORY.bash/.functions"
+alias editalias="vim ${DOTFILE_DIRECTORY}.bash/.aliases"
+alias editf="vim ${DOTFILE_DIRECTORY}.bash/.functions"
 alias reloadp=". ~/.bash_profile"
 
 # Detect which `ls` flavor is in use
