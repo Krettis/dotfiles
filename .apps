@@ -1,8 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-source $HOME/.extra
-source $HOME/$DOTFILES_DIRECTORY/log.sh
-
+source ${DOTFILE_DIRECTORY}log.sh
 msg_run "Installing Apps"
 
 # homebrew-cask
@@ -52,7 +50,6 @@ msg_ok "littleipsum"
 
 brew cask install virtualbox --appdir=/Applications 2> /dev/null
 msg_ok "VirtualBox"
-
 
 brew cask install github --appdir=/Applications 2> /dev/null
 msg_ok "Github app"
