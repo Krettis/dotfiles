@@ -47,6 +47,10 @@ brew install homebrew/dupes/openssh
 brew install homebrew/dupes/screen
 brew install homebrew/php/php55 --with-gmp
 
+
+# Network tools
+brew install ssh-copy-id
+
 # Install font tools.
 brew tap bramstein/webfonttools
 brew install sfnt2woff
