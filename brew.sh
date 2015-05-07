@@ -102,5 +102,10 @@ brew install zopfli
 # installation method.
 brew install node
 
+
+#LINTS
+brew install shellcheck
+
+
 # Remove outdated versions from the cellar.
 brew cleanup
