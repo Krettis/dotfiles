@@ -103,4 +103,6 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
 	" Treat .md files as Markdown
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+	" Treat .bats files as bash
+  autocmd BufRead,BufNewFile *.bats        set filetype=sh
 endif
