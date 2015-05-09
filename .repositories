@@ -1,0 +1,34 @@
+#!/bin/bash
+# repositories which don't have a brew and needed to be installed completely new
+DIR_REPOS="${HOME}/.gitrepos"
+GITHUB_URI="https://github.com/"
+
+repos=(icefox/git-hooks)
+
+function install_repo()
+{
+	for repo in "${repos[@]}"; do
+	idrp=$(grep -oE "[a-z|-]+$" <(echo "$repo"))
+	git clone "${GITHUB_URI}${repo}.git" "${DIR_REPOS}/$idrp"
+	done
+
+	git hooks --installglobal
+}
+
+function update_repo()
+{
+	for repo in "${repos[@]}"; do
+	idrp=$(grep -oE "[a-z|-]+$" <(echo "$repo"))
+  git --work-tree=$DIR_REPOS/$idrp --git-dir="${DIR_REPOS}/${idrp}/.git" pull origin HEAD
+
+	done
+}
+
+
+
+if [ "$1" == "install" ]; then
+	install_repo
+elif [ "$1" == "update" ]; then
+	update_repo
+fi
+
