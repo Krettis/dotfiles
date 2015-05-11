@@ -3,7 +3,7 @@
 DIR_REPOS="${HOME}/.gitrepos"
 GITHUB_URI="https://github.com/"
 
-repos=(icefox/git-hooks)
+repos=(icefox/git-hooks krettis/git-achievements)
 
 function install_repo()
 {
