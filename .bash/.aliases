@@ -15,13 +15,13 @@ alias dt="cd ~/Desktop"
 alias g="git"
 alias h="history"
 alias j="jobs"
-alias cddot="cd ${DOTFILE_DIRECTORY}"
+alias dot="cd ${DOTFILE_DIRECTORY}"
 
 #editbash and bootstrap
 alias bootbash=". ${DOTFILE_DIRECTORY}bootstrap.sh"
-alias editalias="vim ${DOTFILE_DIRECTORY}.bash/.aliases"
-alias editf="vim ${DOTFILE_DIRECTORY}.bash/.functions"
-alias reloadp=". ~/.bash_profile"
+alias editalias="$EDITOR ${DOTFILE_DIRECTORY}.bash/.aliases"
+alias editf="$EDITOR ${DOTFILE_DIRECTORY}.bash/.functions"
+alias reloadp=". ${HOME}/.bash_profile"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
