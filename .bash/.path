@@ -3,3 +3,4 @@
 export PATH="${HOME}/.gitrepos/git-achievements:$PATH"
 export PATH="${HOME}/.gitrepos/git-hooks:$PATH"
 alias git="git-achievements"
+

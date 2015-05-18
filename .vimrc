@@ -95,6 +95,7 @@ noremap <leader>ss :call StripWhitespace()<CR>
 " Save a file as root (,W)
 noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
+
 " Automatic commands
 if has("autocmd")
 	" Enable file type detection
@@ -105,4 +106,8 @@ if has("autocmd")
 	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
 	" Treat .bats files as bash
   autocmd BufRead,BufNewFile *.bats        set filetype=sh
+
+	" Easier way of handling commit message from git
+	autocmd Filetype gitcommit setlocal spell textwidth=72
+
 endif
