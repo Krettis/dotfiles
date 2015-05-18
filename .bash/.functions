@@ -55,7 +55,7 @@ function targz() {
 }
 
 function genFile(){
- if[ ! -z "$1" ]; then
+ if [ ! -z "$1" ]; then
    local doc_type=".txt"
    for i in {1.."$1"}; do dd if=/dev/urandom bs=1 count=1 of=file$i$doc_type; done
  fi
