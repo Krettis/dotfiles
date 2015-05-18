@@ -54,6 +54,13 @@ function targz() {
 	echo "${tmpFile}.gz created successfully.";
 }
 
+function genFile(){
+ if[ ! -z "$1" ]; then
+   local doc_type=".txt"
+   for i in {1.."$1"}; do dd if=/dev/urandom bs=1 count=1 of=file$i$doc_type; done
+ fi
+}
+
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
