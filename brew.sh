@@ -103,9 +103,12 @@ brew install zopfli
 brew install node
 
 
+# dababases
+brew install mongodb
+
+
 #LINTS
 brew install shellcheck
-
 
 # Remove outdated versions from the cellar.
 brew cleanup
