@@ -107,9 +107,9 @@ brew install node
 brew install mongodb
 ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents_
 
+
 #LINTS
 brew install shellcheck
-
 
 # Remove outdated versions from the cellar.
 brew cleanup
