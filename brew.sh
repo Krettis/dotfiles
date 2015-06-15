@@ -103,6 +103,10 @@ brew install zopfli
 brew install node
 
 
+# Databases
+brew install mongodb
+ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents_
+
 #LINTS
 brew install shellcheck
 
