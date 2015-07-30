@@ -51,4 +51,4 @@ docker-wash(){
 
 alias dkrsall="docker ps -aq"
 alias dkrlatest="docker ps -ql"
-
+alias dockerc="docker-compose"
