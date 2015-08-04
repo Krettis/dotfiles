@@ -87,7 +87,7 @@ brew install ack
 brew install git
 brew install imagemagick --with-webp
 brew install lua
-brew install lynx
+brew install lynx # browser
 brew install p7zip
 brew install pigz
 brew install pv
@@ -98,6 +98,7 @@ brew install tree
 brew install webkit2png
 brew install zopfli
 brew install docker-compose
+brew install gpg
 
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
