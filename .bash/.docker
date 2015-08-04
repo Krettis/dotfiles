@@ -45,6 +45,11 @@ docker-wash(){
 	printf "\nDone...\n\n"
 }
 
+dockersynctime(){
+  /usr/local/bin/boot2docker ssh sudo ntpclient -s -h pool.ntp.org
+}
+
+
 ##################
 # Docker ALIAS
 ##################
