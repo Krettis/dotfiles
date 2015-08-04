@@ -140,6 +140,14 @@ alias firefoxp='/Applications/Firefox.app/Contents/MacOS/firefox-bin -p'
 alias mongostart="launchctl start org.mongodb.mongod"
 alias mongostop="launchctl stop org.mongodb.mongod"
 
+## INIT OTHER SOURCE FILES ##
+
+alias dockerb="source ~/.bash/.docker"
+
+## /INIT OTHER SOURCE FILES ##
+
+
+
 # Intuitive map function
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
