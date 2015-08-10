@@ -45,8 +45,17 @@ docker-wash(){
 	printf "\nDone...\n\n"
 }
 
-dockersynctime(){
+docker-synctime(){
   /usr/local/bin/boot2docker ssh sudo ntpclient -s -h pool.ntp.org
+}
+
+
+docker-cleanimages(){
+  docker images -q --filter 'dangling=true' | xargs docker rmi
+}
+
+docker-drop(){
+  docker ps -aq | xargs docker rm -fv
 }
 
 
@@ -57,3 +66,10 @@ dockersynctime(){
 alias dkrsall="docker ps -aq"
 alias dkrlatest="docker ps -ql"
 alias dockerc="docker-compose"
+
+if [ ! `boot2docker status` = "running" ]; then
+	boot2docker start > /dev/null
+	docker-synctime
+	docker-cleanimages
+fi
+
