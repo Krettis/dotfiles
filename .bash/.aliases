@@ -136,6 +136,9 @@ alias firefoxp='/Applications/Firefox.app/Contents/MacOS/firefox-bin -p'
 ## /APPS ##
 
 
+# Databases
+alias mongostart="launchctl start org.mongodb.mongod"
+alias mongostop="launchctl stop org.mongodb.mongod"
 
 ## INIT OTHER SOURCE FILES ##
 

@@ -1,9 +1,16 @@
 # Add `~/bin` to the `$PATH`
 export PATH="$HOME/bin:$PATH";
 
+# Load the shell dotfiles, and then some:
+# * ~/.path can be used to extend `$PATH`.
+for file in ~/.bash/.{path,bash_prompt,exports,aliases,functions}; do
+	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+done;
+unset file;
 
 
 #Extra Environment Configuration
+# * ~/.extra can be used for other settings you don’t want to commit.
 eecfile=~/.extra
 if [ -f "$eecfile" ];then
 	source	"$eecfile"

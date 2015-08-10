@@ -100,13 +100,18 @@ brew install zopfli
 brew install docker-compose
 brew install gpg
 
+
+# Development
+brew install ant
+
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
 brew install node
 
 
-# dababases
+# Databases
 brew install mongodb
+ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents_
 
 
 #LINTS

@@ -3,13 +3,18 @@
 DIR_REPOS="${HOME}/.gitrepos"
 GITHUB_URI="https://github.com/"
 
-repos=(icefox/git-hooks)
+repos=(krettis/git-hooks-1 krettis/git-achievements)
 
 function install_repo()
 {
 	for repo in "${repos[@]}"; do
-	idrp=$(grep -oE "[a-z|-]+$" <(echo "$repo"))
-	git clone "${GITHUB_URI}${repo}.git" "${DIR_REPOS}/$idrp"
+	idrp=$(grep -oE "[a-z|0-9|-]+$" <(echo "$repo"))
+  if [  -d "${DIR_REPOS}/$idrp" ]; then
+    echo "folder ${DIR_REPOS}/$idrp already exists."
+  else
+	 git clone "${GITHUB_URI}${repo}.git" "${DIR_REPOS}/$idrp"
+  fi
+
 	done
 
 	git hooks --installglobal
