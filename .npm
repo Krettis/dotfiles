@@ -1,0 +1,8 @@
+#!/bin/bash
+if [ "$(which keybase-installer)" ==  "" ]; then
+  npm install -g keybase-installenstall -g keybase-installerr
+fi
+keybase-installer
+
+npm install -g pm2
+pm2 completion install
