@@ -79,6 +79,8 @@ Temporary Items
 .apdisk
 
 
+## OTHER REPOS
+git_hooks/*
 ### Vim ###
 [._]*.s[a-w][a-z]
 [._]s[a-w][a-z]
