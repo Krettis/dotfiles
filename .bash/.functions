@@ -61,6 +61,15 @@ function genFile(){
  fi
 }
 
+
+# CONVERSIONS
+function webpToPng(){
+  find ./ -name "*.webp" -exec dwebp {} -o {}.png \;
+}
+# /CONVERSIONS
+
+
+
 # Determine size of a file or total size of a directory
 function fs() {
 	if du -b /dev/null > /dev/null 2>&1; then
@@ -251,3 +260,16 @@ function o() {
 function tre() {
 	tree -aC -I '.git|node_modules|bower_components' --dirsfirst "$@" | less -FRNX;
 }
+
+
+# will open project in sourcetree
+function sourcetree(){
+
+  local cwd=$(pwd)"/.git"
+  if [ -d "$cwd" ]; then
+    open . -a /Applications/SourceTree.app/Contents/MacOs/SourceTree
+  else
+    echo "No repository found"
+  fi
+}
+
