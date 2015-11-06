@@ -114,6 +114,9 @@ brew install mongodb
 ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents_
 
 
+# data handling
+brew install logstash
+
 #LINTS
 brew install shellcheck
 
