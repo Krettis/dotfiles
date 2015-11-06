@@ -97,9 +97,10 @@ brew install speedtest_cli
 brew install tree
 brew install webkit2png
 brew install zopfli
-brew install docker-compose
 brew install gpg
 
+# configuration
+brew install mack
 
 # Development
 brew install ant

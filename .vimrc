@@ -48,6 +48,10 @@ syntax on
 set cursorline
 " Make tabs as wide as two spaces
 set tabstop=2
+" Number of space characters inserted for indentation
+set shiftwidth=2
+" insert space characters whenever the tab key is pressed
+set expandtab
 " Show “invisible” characters
 set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
 set list
