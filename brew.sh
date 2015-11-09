@@ -104,6 +104,7 @@ brew install mack
 
 # Development
 brew install ant
+brew cask install dockertoolbox
 
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
