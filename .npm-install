@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ "$(which keybase-installer)" ==  "" ]; then
-  npm install -g keybase-installenstall -g keybase-installerr
+  npm install -g keybase-installer
 fi
 keybase-installer
 
