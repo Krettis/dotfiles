@@ -5,31 +5,31 @@
 
 
 docker-ip(){
-	boot2docker ip 2> /dev/null
+  docker-machine ip dev 2> /dev/null
 }
 
 docker-removeall(){
-	docker kill $(dkrsall)
-	docker rm $(dkrsall)
+  docker kill $(dkrsall)
+  docker rm $(dkrsall)
 }
 
 docker-remove(){
-	docker kill $1
-	docker rm $1
+  docker kill $1
+  docker rm $1
 }
 
 
 docker-catch(){
-    docker ps -a | grep $1 | awk {'print $1'}
+  docker ps -a | grep $1 | awk {'print $1'}
 }
 
 
 docker-cleanup(){
-	c_id=$(docker-catch $1)
-	if [ -n "$c_id" ]; then
-		docker-remove $c_id
-		printf "Cleaned up %s with id : %s\n" $1 $c_id
-	fi
+  c_id=$(docker-catch $1)
+  if [ -n "$c_id" ]; then
+    docker-remove $c_id
+    printf "Cleaned up %s with id : %s\n" $1 $c_id
+  fi
 }
 
 
@@ -45,11 +45,6 @@ docker-wash(){
 	printf "\nDone...\n\n"
 }
 
-docker-synctime(){
-  /usr/local/bin/boot2docker ssh sudo ntpclient -s -h pool.ntp.org
-}
-
-
 docker-cleanimages(){
   docker images -q --filter 'dangling=true' | xargs docker rmi
 }
@@ -58,18 +53,29 @@ docker-drop(){
   docker ps -aq | xargs docker rm -fv
 }
 
+docker-env()
+{
+  local env="$1"
+
+  if [ "$env" == "" ]; then
+    env="dev"
+  fi
+  echo "$env"
+}
+
+docker-is-running()
+{
+  env="$(docker-env)"
+  if [ ! `docker-machine status $env` = "running" ]; then
+    docker-machine start "$env" > /dev/null
+    docker-cleanimages
+  fi
+}
 
 ##################
 # Docker ALIAS
 ##################
 
-alias dkrsall="docker ps -aq"
-alias dkrlatest="docker ps -ql"
 alias dockerc="docker-compose"
 
-if [ ! `boot2docker status` = "running" ]; then
-	boot2docker start > /dev/null
-	docker-synctime
-	docker-cleanimages
-fi
-
+docker-is-running
