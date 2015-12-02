@@ -103,6 +103,7 @@ brew install gpg
 brew install mack
 
 # Development
+brew install composer
 brew install ant
 brew cask install dockertoolbox
 
