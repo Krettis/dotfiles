@@ -3,82 +3,48 @@ set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
 
-" Make Vim more useful
-set nocompatible
-" Use the OS clipboard by default (on versions compiled with `+clipboard`)
-set clipboard=unnamed
-" Enhance command-line completion
-set wildmenu
-" Allow cursor keys in insert mode
-set esckeys
-" Allow backspace in insert mode
-set backspace=indent,eol,start
-" Optimize for fast terminal connections
-set ttyfast
-" Add the g flag to search/replace by default
-set gdefault
-" Use UTF-8 without BOM
-set encoding=utf-8 nobomb
-" Change mapleader
-let mapleader=","
-" Don’t add empty newlines at the end of files
-set binary
-set noeol
-" Centralize backups, swapfiles and undo history
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-	set undodir=~/.vim/undo
-endif
+set nocompatible                " Make Vim more useful
+set clipboard=unnamed           " Use the OS clipboard by default (on versions compiled with `+clipboard`)
+set wildmenu                    " Enhance command-line completion
+set esckeys                     " Allow cursor keys in insert mode
+set backspace=indent,eol,start  " Allow backspace in insert mode
+set ttyfast                     " Optimize for fast terminal connections
+set gdefault                    " Add the g flag to search/replace by default
+set encoding=utf-8 nobomb       " Use UTF-8 without BOM
+let mapleader=","               " Change mapleader
+set binary                      " don’t add empty newlines at the end of files
+set noeol                       " don’t add empty newlines at the end of files
 
-" Don’t create backups when editing files in certain directories
-set backupskip=/tmp/*,/private/tmp/*
-
-" Respect modeline in files
-set modeline
+set modeline                    " respect modeline in files
 set modelines=4
-" Enable per-directory .vimrc files and disable unsafe commands in them
+" enable per-directory .vimrc files and disable unsafe commands in them
 set exrc
 set secure
-" Enable line numbers
-set number
-" Enable syntax highlighting
-syntax on
-" Highlight current line
-set cursorline
-" Make tabs as wide as two spaces
-set tabstop=2
-" Number of space characters inserted for indentation
-set shiftwidth=2
-" insert space characters whenever the tab key is pressed
-set expandtab
-" Show “invisible” characters
-set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_
-set list
-" Highlight searches
-set hlsearch
-" Ignore case of searches
-set ignorecase
-" Highlight dynamically as pattern is typed
-set incsearch
-" Always show status line
-set laststatus=2
-" Enable mouse in all modes
-set mouse=a
-" Disable error bells
-set noerrorbells
-" Don’t reset cursor to start of line when moving around.
-set nostartofline
-" Show the cursor position
-set ruler
-" Don’t show the intro message when starting Vim
-set shortmess=atI
-" Show the current mode
-set showmode
-" Show the filename in the window titlebar
-set title
-" Show the (partial) command as it’s being typed
-set showcmd
+
+set tabstop=2                     " make tabs as wide as two spaces
+set shiftwidth=2                  " number of space characters inserted for indentation
+set expandtab                     " insert space characters whenever the tab key is pressed
+
+syntax on                         " enable syntax highlighting
+set cursorline                    " highlight current line
+set lcs=tab:▸\ ,trail:·,eol:¬,nbsp:_  " show “invisible” characters
+set list                          " highlight whitespaces
+set hlsearch                      " highlight searches
+
+set ignorecase                    " ignore case of searches
+set incsearch                     " highlight dynamically as pattern is typed
+set laststatus=2                  " always show status line
+set mouse=a                       " Enable mouse in all modes
+set noerrorbells                  " Disable error bells
+
+set number                        " enable line numbers
+set nostartofline                 " Don’t reset cursor to start of line when moving around.
+set ruler                         " Show the cursor position
+set shortmess=atI                 " Don’t show the intro message when starting Vim
+
+set showmode                      " Show the current mode
+set title                         " Show the filename in the window titlebar
+set showcmd                       " Show the (partial) command as it’s being typed
 " Use relative line numbers
 if exists("&relativenumber")
 	set relativenumber
@@ -86,6 +52,16 @@ if exists("&relativenumber")
 endif
 " Start scrolling three lines before the horizontal window border
 set scrolloff=3
+
+" centralize backups, swapfiles and undo history
+set backupdir=~/.vim/backups
+set directory=~/.vim/swaps
+if exists("&undodir")
+	set undodir=~/.vim/undo
+endif
+" don’t create backups when editing files in certain directories
+set backupskip=/tmp/*,/private/tmp/*
+
 
 " Strip trailing whitespace (,ss)
 function! StripWhitespace()
@@ -96,22 +72,33 @@ function! StripWhitespace()
 	call setreg('/', old_query)
 endfunction
 noremap <leader>ss :call StripWhitespace()<CR>
-" Save a file as root (,W)
-noremap <leader>W :w !sudo tee % > /dev/null<CR>
 
 
 " Automatic commands
 if has("autocmd")
-	" Enable file type detection
-	filetype on
-	" Treat .json files as .js
-	autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
-	" Treat .md files as Markdown
-	autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
-	" Treat .bats files as bash
+  " Enable file type detection
+  filetype on
+  " Treat .json files as .js
+  autocmd BufNewFile,BufRead *.json setfiletype json syntax=javascript
+  " Treat .md files as Markdown
+  autocmd BufNewFile,BufRead *.md setlocal filetype=markdown
+  " Treat .bats files as bash
   autocmd BufRead,BufNewFile *.bats        set filetype=sh
 
-	" Easier way of handling commit message from git
-	autocmd Filetype gitcommit setlocal spell textwidth=72
+  " Easier way of handling commit message from git
+  autocmd Filetype gitcommit setlocal spell textwidth=72
 
 endif
+
+
+" ____________________________________________________________
+
+" Quick navigation
+nmap <leader>nv :e ~/.vimrc<cr>
+nmap <leader>ngi :e ~/.gitconfig<cr>
+nmap <leader>ngc :e ~/.gitconfig<cr>
+
+" Fast saves
+nmap <leader>w :w!<cr>
+"Easy escaping to normal model
+imap jj <esc>
