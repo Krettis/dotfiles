@@ -105,7 +105,6 @@ brew install mack
 # Development
 brew install composer
 brew install ant
-brew cask install dockertoolbox
 
 # Install Node.js. Note: this installs `npm` too, using the recommended
 # installation method.
@@ -115,7 +114,7 @@ brew install node
 # Databases
 brew install mongodb
 ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents_
-
+brew install sqlite
 
 # data handling
 brew install logstash
