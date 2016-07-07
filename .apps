@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source ${DOTFILE_DIRECTORY}log.sh
+source ${DOTFILE_DIRECTORY}/log.sh
 msg_run "Installing Apps"
 
 # homebrew-cask
@@ -14,83 +14,44 @@ else
   msg_ok "Setup homebrew-cask"
 fi
 
+function cask_install(){
+  appUri="$1"
+  appTitle="$2"
+  brew cask install "$appUri" --appdir=/Applications 2> /dev/null
+  msg_ok "$appTitle"
+}
 
-brew cask install firefox --appdir=/Applications 2> /dev/null
-msg_ok "Firefox"
+## Browsers
+cask_install "firefox" "FireFox"
+cask_install "google-chrome" "Google Chrome"
+cask_install "chromium" "Chromium"
 
-brew cask install google-chrome --appdir=/Applications 2> /dev/null
-msg_ok "Google Chrome"
+## Media
+cask_install "vlc" "Vlc Media Player"
+cask_install "spotify" "Spotify"
 
-brew cask install chromium --appdir=/Applications 2> /dev/null
-msg_ok "Chromium"
+## Tools
+cask_install "alfred" "Alfred"
+cask_install "iterm2" "iTerm2"
 
-brew cask install sublime-text --appdir=/Applications 2> /dev/null
-msg_ok "Sublime Text"
+## Development
+cask_install "vagrant" "Vagrant"
+cask_install "virtualbox" "VirtualBox"
+cask_install "dockertoolbox" "Docker Toolbox"
+cask_install "sourcetree" "Sourcetree"
+cask_install "dash" "Dash"
+cask_install "sublime-text" "Sublime Text"
 
-brew cask install atom --appdir=/Applications 2> /dev/null
-msg_ok "Atom"
-
-brew cask install transmit --appdir=/Applications 2> /dev/null
-msg_ok "Transmit"
-
-brew cask install dash --appdir=/Applications 2> /dev/null
-msg_ok "dash"
-
-brew cask install robomongo --appdir=/Applications 2> /dev/null
-msg_ok "robomongo"
-
-brew cask install fitbit-connect --appdir=/Applications 2> /dev/null
-msg_ok "fitbit-connect"
-
-brew cask install iterm2 --appdir=/Applications 2> /dev/null
-msg_ok "iTerm2"
-
-brew cask install littleipsum --appdir=/Applications 2> /dev/null
-msg_ok "littleipsum"
-
-brew cask install virtualbox --appdir=/Applications 2> /dev/null
-msg_ok "VirtualBox"
-
-brew cask install github --appdir=/Applications 2> /dev/null
-msg_ok "Github app"
-
-brew cask install mysqlworkbench --appdir=/Applications 2> /dev/null
-msg_ok "Mysql Workbench"
-
-brew cask install vagrant --appdir=/Applications 2> /dev/null
-msg_ok "Vagrant"
-
-brew cask install google-drive --appdir=/Applications 2> /dev/null
-msg_ok "Google Drive"
-
-brew cask install evernote --appdir=/Applications 2> /dev/null
-msg_ok "Evernote"
-
-brew cask install skype --appdir=/Applications 2> /dev/null
-msg_ok "Skype"
-
-brew cask install spotify --appdir=/Applications 2> /dev/null
-msg_ok "Spotify"
+## Other
+cask_install "transmit" "Transmit"
+cask_install "robomongo" "Robomongo"
+cask_install "mysqlworkbench" "Mysql Workbench"
+cask_install "google-drive" "Google Drive"
+cask_install "keka" "Keka"
+cask_install "icons8" "icons8"
+cask_install "caffeine" "Caffeine"
 
 
-brew cask install vlc --appdir=/Applications 2> /dev/null
-msg_ok "Vlc Media Player"
 
-brew cask install cloud --appdir=/Applications 2> /dev/null
-msg_ok "Cloud App"
-
-brew cask install keka --appdir=/Applications 2> /dev/null
-msg_ok "Keka"
-
-brew cask install icons8 --appdir=/Applications 2> /dev/null
-msg_ok "icons8"
-
-brew cask install caffeine --appdir=/Applications 2> /dev/null
-msg_ok "Caffeine"
-
-brew cask install alfred --appdir=/Applications 2> /dev/null
-msg_ok "Alfred"
-
-brew cask install transmission --appdir=/Applications 2> /dev/null
 msg_ok "Transmission"
 msg_ok "Done!"
