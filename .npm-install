@@ -8,3 +8,10 @@ npm install -g pm2
 pm2 completion install
 
 npm install -g wunderline
+
+
+# DEV
+npm install -g bower
+npm install -g grunt
+npm install -g grunt-cli
+npm install -g ntl
