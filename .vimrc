@@ -1,7 +1,9 @@
 " Use the Solarized Dark theme
+set t_Co=256
 set background=dark
 colorscheme solarized
 let g:solarized_termtrans=1
+set guifont=Menlo:h14
 
 set nocompatible                " Make Vim more useful
 set clipboard=unnamed           " Use the OS clipboard by default (on versions compiled with `+clipboard`)
@@ -85,20 +87,32 @@ if has("autocmd")
   " Treat .bats files as bash
   autocmd BufRead,BufNewFile *.bats        set filetype=sh
 
+  autocmd BufNewFile,BufRead *.toml set filetype=toml
+  " Rust uses Cargo.toml and Cargo.lock (both are toml files).
+  autocmd BufNewFile,BufRead Cargo.lock set filetype=toml
+
   " Easier way of handling commit message from git
   autocmd Filetype gitcommit setlocal spell textwidth=72
 
 endif
 
+" Bundles, plugins
+execute pathogen#infect()
 
 " ____________________________________________________________
 
 " Quick navigation
 nmap <leader>nv :e ~/.vimrc<cr>
-nmap <leader>ngi :e ~/.gitconfig<cr>
+nmap <leader>ngi :e ~/.gitignore<cr>
 nmap <leader>ngc :e ~/.gitconfig<cr>
+nmap <leader>t :NERDTree<cr>
 
 " Fast saves
 nmap <leader>w :w!<cr>
 "Easy escaping to normal model
 imap jj <esc>
+
+
+" Test commands
+nmap <leader>twm :! mocha -R nyan<cr>
+
