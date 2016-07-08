@@ -12,6 +12,7 @@ alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 
 # Shortcuts
+alias git="git-achievements"
 alias g="git"
 alias h="history"
 alias j="jobs"
@@ -128,22 +129,24 @@ alias badge="tput bel"
 # Spotify play / stop / pause
 alias spotify="osascript ~/.appscripts/SpotifyControl.scpt"
 
-# Firefox 
+# Firefox
 # profile
 alias firefoxp='/Applications/Firefox.app/Contents/MacOS/firefox-bin -p'
 
 
 ## /APPS ##
 
+# small tools
+alias is="is-"
 
 # Databases
 alias mongostart="launchctl start org.mongodb.mongod"
 alias mongostop="launchctl stop org.mongodb.mongod"
 
 ## INIT OTHER SOURCE FILES ##
-
 alias dockerb="source ~/.bash/.docker"
 alias dockerboot="source ~/.bash/.docker"
+alias jrnlb="source ~/.bash/jrnl.sh"
 ## /INIT OTHER SOURCE FILES ##
 
 
