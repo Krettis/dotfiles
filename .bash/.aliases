@@ -146,7 +146,6 @@ alias mongostop="launchctl stop org.mongodb.mongod"
 ## INIT OTHER SOURCE FILES ##
 alias dockerb="source ~/.bash/.docker"
 alias dockerboot="source ~/.bash/.docker"
-alias jrnlb="source ~/.bash/jrnl.sh"
 ## /INIT OTHER SOURCE FILES ##
 
 
