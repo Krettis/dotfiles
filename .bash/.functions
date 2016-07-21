@@ -16,6 +16,11 @@ function calc() {
 	printf "\n";
 }
 
+function title(){
+  title="$1"
+  PS1+="\[\033]0;${title}\007\]";
+}
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
