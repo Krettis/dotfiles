@@ -1,7 +1,0 @@
-#!/bin/bash
-
-upt=$(uptime)
-
-echo -e "Hello" $USER "Welcome on $hname.\nKernel Details: " $(uname -smr)  "\nUptime: " $upt "\nServer time : "$(date) 
-
-fortune -s | cowsay -f stimpy | lolcat --seed 0
