@@ -1,2 +1,2 @@
 #!/bin/bash
-fortune -s | cowsay | lolcat 
+fortune -s | cowsay | lolcat

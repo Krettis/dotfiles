@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Make vim the default editor.
 export EDITOR='vim';
 
@@ -20,3 +22,7 @@ export MANPAGER='less -X';
 # Always enable colored `grep` output.
 export GREP_OPTIONS='--color=auto';
 
+
+# Load rbenv automatically by adding
+# the following to ~/.bash_profile:
+eval "$(rbenv init -)"

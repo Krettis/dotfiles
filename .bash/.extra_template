@@ -1,20 +1,32 @@
 #!/bin/bash
+# Enviromental variables
 
-### CONFIGURATION
-GIT_AUTHOR_NAME=""
-GIT_AUTHOR_EMAIL="" 
-GIT_COMMITTER_EMAIL=""
-GIT_COMMITTER_NAME=""
-git config --global user.email ""
-git config --global user.name ""
+# GLOBAL
+USER_NAME=""
+USER_EMAIL=""
 
-DOTFILE_DIRECTORY=""
-export DOTFILE_DIRECTORY
+## EXPORTS
 
-KRETTISDOTNL_USER=""
-KRETTISDOTNL_SERVER=""
-KRETTISDOTNL_PATH=""
-export KRETTISDOTNL_USER
-export KRETTISDOTNL_PATH
-export KRETTISDOTNL_SERVER
+### Folders
+export FOLDER_USER_APP=""
+export DOTFILE_DIRECTORY=""
+
+## GIT
+export GIT_AUTHOR_EMAIL=""
+export GIT_AUTHOR_NAME=""
+export HOMEBREW_GITHUB_API_TOKEN=""
+
+##@ MISC
+export KRETTISDOTNL_USER=""
+export KRETTISDOTNL_SERVER=""
+export KRETTISDOTNL_PATH=""
+
+### NETWORK
+export LOSTHIGHWAY_MAC=""
+export ROUTER_BROADCAST=""
+
+### Docker
+
+
+# ALIASES
 

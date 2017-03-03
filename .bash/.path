@@ -1,5 +1,5 @@
 #!/bin/bash
 
-export PATH="${HOME}/.gitrepos/git-achievements:$PATH"
-export PATH="${HOME}/.gitrepos/git-hooks:$PATH"
+export PATH="${HOME}/.gitrepos/bin:$PATH"
+export PATH="${HOME}/.cargo/bin:$PATH"
 
