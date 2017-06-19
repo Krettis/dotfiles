@@ -3,7 +3,7 @@
 DIR_REPOS="${HOME}/.gitrepos"
 GITHUB_URI="https://github.com/"
 
-repos=(krettis/git-hooks-1 krettis/git-achievements)
+repos=(krettis/git-hooks-1 krettis/git-achievements qw3rtman/git-fire.git )
 
 function install_repo()
 {
