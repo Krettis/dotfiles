@@ -21,6 +21,21 @@ function title(){
   PS1+="\[\033]0;${title}\007\]";
 }
 
+
+# Create a new tmux session and go to it
+function session()
+{
+  name="$1"
+  tmux has-session -t "$name" 2>/dev/null
+  if [ "$?" -eq 1 ]; then
+   
+    tmux new-session -d -t "$name"
+  fi
+
+  tmux switch-client -t "$name"
+}
+
+
 # Create a new directory and enter it
 function mkd() {
 	mkdir -p "$@" && cd "$_";
