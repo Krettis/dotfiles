@@ -2,9 +2,11 @@
 
 	# View abbreviated SHA, description, and history graph of the latest 20 commits
 	l = log --pretty=oneline -n 20 --graph --abbrev-commit
+	lo = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 
 	# View the current working tree status using the short format
 	s = status -s
+  st = status
 
 	# Show the diff between the latest commit and the current state
 	d = !"git diff-index --quiet HEAD -- || clear; git --no-pager diff --patch-with-stat"
@@ -16,7 +18,7 @@
 	p = !"git pull; git submodule foreach git pull origin master"
 
 	# Clone a repository including all submodules
-	c = clone --recursive
+	#c = clone --recursive
 
 	# Commit all changes
 	ca = !git add -A && git commit -av
@@ -25,8 +27,8 @@
 	go = "!f() { git checkout -b \"$1\" 2> /dev/null || git checkout \"$1\"; }; f"
 
 	# do a commit
-	gc ="git commit"
-	gcv = "git commit --no-verify"
+	c ="commit"
+	cnv = "commit --no-verify"
 
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 
@@ -131,6 +133,7 @@
 
 	# Detect copies as well as renames
 	renames = copies
+	tool = diffmerge
 
 [help]
 
@@ -141,6 +144,7 @@
 
 	# Include summaries of merged commits in newly created merge commit messages
 	log = true
+	tool = diffmerge
 
 [push]
 
@@ -177,3 +181,22 @@
 	required = true
 [pager]
  status = true
+[user]
+	name = Krettis
+	email = krettis@gmail.com
+	signingkey = C70EE2B1
+[difftool "diffmerge"]
+	cmd = diffmerge \"$LOCAL\" \"$REMOTE\"
+[mergetool "diffmerge"]
+	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
+	trustExitCode = true
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Users/jl/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	gpgsign = false
+[init]
+	templatedir = /Users/jl/.git-template-with-git-hooks
