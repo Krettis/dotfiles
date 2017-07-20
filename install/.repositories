@@ -3,30 +3,38 @@
 DIR_REPOS="${HOME}/.gitrepos"
 GITHUB_URI="https://github.com/"
 
-repos=(krettis/git-hooks-1 krettis/git-achievements qw3rtman/git-fire.git )
+repos=( \
+krettis/git-hooks-1 \
+krettis/git-achievements \
+qw3rtman/git-fire \
+)
+
+function getDirRepo(){
+  dir_repo=$(grep -oE "[a-z|0-9|-]+$" <(echo "$1"))
+  echo "${dir_repo}"
+}
 
 function install_repo()
 {
-	for repo in "${repos[@]}"; do
-	idrp=$(grep -oE "[a-z|0-9|-]+$" <(echo "$repo"))
-  if [  -d "${DIR_REPOS}/$idrp" ]; then
-    echo "folder ${DIR_REPOS}/$idrp already exists."
-  else
-	 git clone "${GITHUB_URI}${repo}.git" "${DIR_REPOS}/$idrp"
-  fi
+  for repo in "${repos[@]}"; do
 
-	done
+    dir_repo=`getDirRepo "$repo"`
+    if [  -d "${DIR_REPOS}/${dir_repo}" ]; then
+      msg_error "folder ${DIR_REPOS}/$dir_repo already exists."
+    else
+     git clone "${GITHUB_URI}${repo}.git" "${DIR_REPOS}/${dir_repo}"
+    fi
+  done
 
-	git hooks --installglobal
+  git hooks --installglobal
 }
 
 function update_repo()
 {
-	for repo in "${repos[@]}"; do
-	idrp=$(grep -oE "[a-z|-]+$" <(echo "$repo"))
-  git --work-tree=$DIR_REPOS/$idrp --git-dir="${DIR_REPOS}/${idrp}/.git" pull origin HEAD
-
-	done
+  for repo in "${repos[@]}"; do
+    dir_repo=`getDirRepo "$repo"`
+    git --work-tree=$DIR_REPOS/${dir_repo} --git-dir="${DIR_REPOS}/${dir_repo}/.git" pull origin HEAD
+  done
 }
 
 
