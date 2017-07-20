@@ -1,0 +1,10 @@
+# ~/.tmuxinator/writing.yml
+
+name: writing
+root: ~/writing
+windows:
+  - editor:
+      layout: 31af,181x44,0,0{105x44,0,0,0,75x44,106,0,1}
+      panes:
+        - jrnlb && journal
+        - wunderline inbox
