@@ -116,4 +116,6 @@ imap jj <esc>
 " Test commands
 nmap <leader>twm :! mocha -R nyan<cr>
 
+map <leader>ww <Plug>CamelCaseMotion_w
+map <leader>bb <Plug>CamelCaseMotion_b
 
