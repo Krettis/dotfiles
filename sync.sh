@@ -2,6 +2,8 @@
 
 source log.sh
 
+sync_parent_dir=
+
 function sync_file()
 {
   local file_name="$1"
@@ -9,6 +11,10 @@ function sync_file()
 
   has_diff=`cmp "$file_name" "${target_file}"`
   if [[ ! -z $has_diff ]]; then
+    if [[ ! -z $sync_parent_dir ]]; then
+      msg_prompt "Directory : $sync_parent_dir\n  ======\n"
+      sync_parent_dir=
+    fi
     msg_warning "$file_name has changed"
 
     read -p "Show diff?`echo $'\n> '`" -n 1
@@ -19,6 +25,7 @@ function sync_file()
       if [[ $REPLY =~ ^[Yy]$ ]]; then
         echo ""
         rsync "$target_file" "$file_name"
+        #echo "ok:: $file_name -> $target_file"
       fi
     fi
   fi
@@ -27,10 +34,10 @@ function sync_file()
 function from_dir_to_file()
 {
   local file="$1"
-  if [ -d "$file" ]; then
-    return
-    local dir_path="${file}*"
-    msg_prompt "Directory : $file\n  ======\n"
+
+  if [ -d "dots/$file" ]; then
+    local dir_path="dots/${file}*"
+    sync_parent_dir="$file"
 
     for f in ${dir_path}
     do
@@ -38,13 +45,10 @@ function from_dir_to_file()
         return
       fi
 
-      #echo "f::{$f}"
-      #from_dir_to_file "$f/"
+      #echo "f::{${f/dots\/}}"
+      from_dir_to_file "${f/dots\/}/" "$file"
     done
-
-    #msg " \n"
   else
-
     local _file=${file%/}
     sync_file "dots/$_file" "${HOME}/${_file}"
   fi
@@ -63,7 +67,7 @@ function from_dir_to_file()
 #.tmux.conf \
 
 for file in \
-.appscripts \
+.appscripts/ \
 .bash/ \
 .bashrc \
 .composer/composer.json \
