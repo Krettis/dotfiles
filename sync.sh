@@ -35,10 +35,10 @@ function from_dir_to_file()
 {
   local file="$1"
 
-  if [ -d "dots/$file" ]; then
+  if [ -d "${DOTFILE_DIRECTORY}/dots/$file" ]; then
 
     local dir_path="dots/${file}*"
-    local dir_path=$(shopt -s nullglob;shopt -s dotglob;echo dots/${file}*)
+    local dir_path=$(shopt -s nullglob;shopt -s dotglob;echo ${DOTFILE_DIRECTORY}/dots/${file}*)
     sync_parent_dir="$file"
 
     for f in ${dir_path}
@@ -47,8 +47,8 @@ function from_dir_to_file()
         return
       fi
 
-      #echo "f::{${f/dots\/}}"
-      from_dir_to_file "${f/dots\/}/" "$file"
+      #echo "f::{${f/${DOTFILE_DIRECTORY}\/dots\//}"
+      from_dir_to_file "${f/${DOTFILE_DIRECTORY}\/dots\/}/" "$file"
     done
   else
     local _file=${file%/}
@@ -97,5 +97,13 @@ fi
 from_dir_to_file "$file"
 done
 
+### Auto commit it to repo
+dotgit="git --git-dir=$DOTFILE_DIRECTORY/.git --work-tree=$DOTFILE_DIRECTORY"
+$dotgit add dots/
+if [[ ! -z `$dotgit diff --cached` ]]; then
+  $dotgit commit -m"Autocommit: SYNC dot files"
+  $dotgit push
+fi
 
 
+#EOF
