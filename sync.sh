@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source log.sh
+source $DOTFILE_DIRECTORY/log.sh
 
 sync_parent_dir=
 
@@ -15,11 +15,11 @@ function sync_file()
       msg_prompt "Directory : $sync_parent_dir\n  ======\n"
       sync_parent_dir=
     fi
-    msg_warning "$file_name has changed"
+    msg_warning "$file_name has changed" "\n"
 
     read -p "Show diff?`echo $'\n> '`" -n 1
     if [[ $REPLY =~ ^[Yy]$ ]]; then
-      diff "$file_name" "$target_file"
+      git diff --color "$file_name" "$target_file"
 
       read -p "sync file?`echo $'\n> '`" -n 1
       if [[ $REPLY =~ ^[Yy]$ ]]; then
@@ -52,7 +52,7 @@ function from_dir_to_file()
     done
   else
     local _file=${file%/}
-    sync_file "dots/$_file" "${HOME}/${_file}"
+    sync_file "${DOTFILE_DIRECTORY}/dots/$_file" "${HOME}/${_file}"
   fi
 
 }
@@ -87,7 +87,7 @@ for file in \
 .wgetrc \
 ; do
 
-dot_file="dots/$file"
+dot_file="${DOTFILE_DIRECTORY}/dots/$file"
 
 if [ ! -f "$dot_file" ] && [ ! -d "$dot_file" ]; then
   msg_error "${dot_file} does not exists"
