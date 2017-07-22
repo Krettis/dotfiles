@@ -36,7 +36,9 @@ function from_dir_to_file()
   local file="$1"
 
   if [ -d "dots/$file" ]; then
+
     local dir_path="dots/${file}*"
+    local dir_path=$(shopt -s nullglob;shopt -s dotglob;echo dots/${file}*)
     sync_parent_dir="$file"
 
     for f in ${dir_path}
@@ -94,4 +96,6 @@ fi
 
 from_dir_to_file "$file"
 done
+
+
 

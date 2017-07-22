@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ${DOTFILE_DIRECTORY}/log.sh
-msg_run "Installing Apps"
+msg_run "Installing Brew Cask Apps"
 
 # homebrew-cask
 
@@ -52,7 +52,4 @@ cask_install "keka" "Keka"
 cask_install "icons8" "icons8"
 cask_install "caffeine" "Caffeine"
 
-
-
-msg_ok "Transmission"
 msg_ok "Done!"
