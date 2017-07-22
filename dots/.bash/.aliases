@@ -19,7 +19,7 @@ alias gcn="git commit --no-verify"
 alias gs="git s"
 alias h="history"
 alias j="jobs"
-alias dot="cd ${DOTFILE_DIRECTORY}"
+alias dot=". ${DOTFILE_DIRECTORY}/dot.sh"
 
 #editbash and bootstrap
 alias bootbash=". ${DOTFILE_DIRECTORY}bootstrap.sh"
@@ -58,7 +58,7 @@ alias week='date +%V'
 alias timer='echo "Timer started. Stop with Ctrl-D." && date && time cat && date'
 
 # Get OS X Software Updates, and update installed Ruby gems, Homebrew, npm, and their installed packages
-alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update'
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update;${DOTFILE_DIRECTORY}/install/.repositories update'
 
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"

@@ -1,5 +1,8 @@
 #!/bin/bash
 
 export PATH="${HOME}/.gitrepos/bin:$PATH"
+export PATH="${HOME}/uri/coding/bin:$PATH"
 export PATH="${HOME}/.cargo/bin:$PATH"
+export GOPATH="${HOME}/.go"
+export PATH=$PATH:$GOBIN
 

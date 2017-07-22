@@ -76,6 +76,5 @@ docker-is-running()
 # Docker ALIAS
 ##################
 
-alias dockerc="docker-compose"
 
 docker-is-running
