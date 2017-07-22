@@ -197,6 +197,6 @@
 	cmd = ~/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
-	gpgsign = false
+	gpgsigN = false
 [init]
 	templatedir = ~/.git-template-with-git-hooks
