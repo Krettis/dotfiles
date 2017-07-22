@@ -1,0 +1,156 @@
+#!/usr/bin/env python
+#
+#    Copyright (C) 2015-2016 rsiddharth <s@ricketyspace.net>
+#
+#   This program is free software: you can redistribute it and/or
+#   modify it under the terms of the GNU General Public License as
+#   published by the Free Software Foundation, either version 3 of the
+#   License, or (at your option) any later version.
+#
+#   This program is distributed in the hope that it will be useful,
+#   but WITHOUT ANY WARRANTY; without even the implied warranty of
+#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#   General Public License for more details.
+#
+#   You should have received a copy of the GNU General Public License
+#   along with this program.  If not, see
+#   <http://www.gnu.org/licenses/>.
+
+import os
+import shlex
+import sys
+
+from argparse import ArgumentParser
+from hashlib import sha256
+from os import path
+from shutil import rmtree
+from subprocess import call
+
+GPG = 'gpg'
+
+OPT_EXPORT = '-a --export'
+OPT_EXPORT_SEC = '-a --export-secret-keys'
+OPT_EXPORT_TRUST = '--export-ownertrust'
+
+OPT_SYM_ENCRYPT = "--symmetric"
+OPT_GPG_OUT = "--output"
+
+TAR = 'tar'
+OPT_TAR_CRT = 'cvzf'
+OUT_TAR_SUFFIX = '.tar.gz'
+
+DIR_PREFIX = 'gnupg-'
+
+OUT_PUB = 'pub.key'
+OUT_SEC = 'sec.key'
+OUT_TRUST = 'trust.gpg'
+
+def tar_it(f):
+    """
+    Creates a compressed tar ball of `f` at path.dirname(directory).
+
+    Returns the path of the compress tar ball.
+    """
+    tar_ball = path.join(path.dirname(f),
+                         "%s%s" % (path.basename(f),
+                                   OUT_TAR_SUFFIX))
+
+    print(("creating tar ball {}...".format(tar_ball)))
+    call(shlex.split("%s %s %s %s" % (TAR, OPT_TAR_CRT, tar_ball,
+                                      f)))
+
+    return tar_ball
+
+
+def encrypt_it(f):
+    """
+    Encrypts file `f`.
+    """
+    blob = sha256(f.encode()).hexdigest()
+    blob_path = path.join(path.dirname(f), blob)
+
+    print(("blobbing {} to {}".format(f, blob_path)))
+    call(shlex.split("%s %s %s %s %s" % (GPG, OPT_GPG_OUT, blob_path,
+                                   OPT_SYM_ENCRYPT, f)))
+
+
+
+
+
+def gnupg_export(fpr, directory, encrypt=False):
+    """Export gnupg data connected with fingerprint `fpr` to `directory`.
+
+    This function will create directory call `gnupg-fpr` inside
+    `directory` and export gnupg data connected with fingerprint `fpr`
+    to 3 seperate files under `gnupg-fpr`.
+
+    If `encrypt` is True, then encrypt the whole export.
+
+    """
+
+    # Remove spaces from fingerprint
+    fpr = fpr.replace(' ', '')
+
+    # First make the `gnupg-fpr` directory.
+    try:
+        export_dir = path.join(directory,
+                                    "%s%s" % (DIR_PREFIX, fpr))
+        os.mkdir(export_dir)
+    except OSError:
+        print(("Looks like {} already exists".format(export_dir)))
+
+    # Export public key.
+    pub_key = path.join(export_dir, OUT_PUB)
+
+    print(("writing public key to {}".format(pub_key)))
+    with open(pub_key, 'w') as out:
+        call(shlex.split("%s %s %s" % (GPG, OPT_EXPORT, fpr)),
+             stdout=out)
+
+    # Export secret key.
+    sec_key = path.join(export_dir, OUT_SEC)
+
+    print(("writing secret key to {}".format(sec_key)))
+    with open(sec_key, 'w') as out:
+        call(shlex.split("%s %s %s" % (GPG, OPT_EXPORT_SEC, fpr)),
+             stdout=out)
+
+    # Export trust.
+    trust = path.join(export_dir, OUT_TRUST)
+
+    print(("writing owner trust to {}".format(trust)))
+    with open(trust, 'w') as out:
+        call(shlex.split("%s %s" % (GPG, OPT_EXPORT_TRUST)),
+             stdout=out)
+
+    # Create a tar ball of the export_dir.
+    tar_ball = tar_it(export_dir)
+
+    # If asked for, encrypt the tar ball.
+    if encrypt:
+        encrypt_it(tar_ball)
+        os.remove(tar_ball)
+
+    # Clean up.
+    rmtree(export_dir)
+
+
+if __name__ == "__main__":
+    parser = ArgumentParser()
+    group = parser.add_argument_group('group')
+    group.add_argument('fpr',
+                        help="fingerprint of key to export.")
+    group.add_argument('directory',
+                        help="directory to export to.")
+    group.add_argument('-e', '--encrypt', action="store_true",
+                       help="encrypt the export.")
+
+    args = parser.parse_args()
+
+    directory = path.expanduser(args.directory)
+    if path.exists(directory):
+      gnupg_export(args.fpr, directory, args.encrypt)
+    else:
+        print(("{} does not exist. Exiting...".format(directory)))
+        sys.exit(1)
+")))))))"
