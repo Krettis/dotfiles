@@ -19,11 +19,8 @@ alias gcn="git commit --no-verify"
 alias gs="git s"
 alias h="history"
 alias j="jobs"
-alias dot=". ${DOTFILE_DIRECTORY}/dot.sh"
 
 #editbash and bootstrap
-alias bootbash=". ${DOTFILE_DIRECTORY}bootstrap.sh"
-alias editalias="$EDITOR ${DOTFILE_DIRECTORY}.bash/.aliases"
 alias editf="$EDITOR ${DOTFILE_DIRECTORY}.bash/.functions"
 alias reloadp=". ${HOME}/.bash_profile"
 

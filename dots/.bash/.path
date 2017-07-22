@@ -1,5 +1,6 @@
 #!/bin/bash
 
+export PATH="${DOTFILE_DIRECTORY}/bin:$PATH"
 export PATH="${HOME}/.gitrepos/bin:$PATH"
 export PATH="${HOME}/uri/coding/bin:$PATH"
 export PATH="${HOME}/.cargo/bin:$PATH"
