@@ -1,3 +1,6 @@
+# Reload the shell (i.e. invoke as a login shell)
+alias reload="exec $SHELL -l"
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 alias ..="cd .."
 alias ...="cd ../.."
@@ -11,18 +14,24 @@ alias db="cd ~/Dropbox"
 alias dl="cd ~/Downloads"
 alias dt="cd ~/Desktop"
 
-# Shortcuts
-alias git="git-achievements"
+# GIT
 alias g="git"
+alias git="git-achievements"
+alias gs="git st"
 alias gc="git commit"
 alias gcn="git commit --no-verify"
-alias gs="git s"
+alias gp="git ph"
+alias gfp="git ph force"
+alias gfpn="git ph force no-verify"
+alias gl="git pl"
+alias gdev="git checkout develop"
+alias gdevull="git checkout develop && git pl"
+
+
+# Shortcuts
 alias h="history"
 alias j="jobs"
 
-#editbash and bootstrap
-alias editf="$EDITOR ${DOTFILE_DIRECTORY}.bash/.functions"
-alias reloadp=". ${HOME}/.bash_profile"
 
 # Detect which `ls` flavor is in use
 if ls --color > /dev/null 2>&1; then # GNU `ls`
@@ -135,10 +144,6 @@ alias firefoxp='/Applications/Firefox.app/Contents/MacOS/firefox-bin -p'
 
 
 ## /APPS ##
-
-# small tools
-alias is="is-"
-
 # Databases
 alias mongostart="launchctl start org.mongodb.mongod"
 alias mongostop="launchctl stop org.mongodb.mongod"
@@ -173,10 +178,6 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 
 # Lock the screen (when going AFK)
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-
-# Reload the shell (i.e. invoke as a login shell)
-alias reload="exec $SHELL -l"
-
 
 # List the ports
 alias listports='lsof -i | grep LISTEN'
