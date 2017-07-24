@@ -37,7 +37,6 @@ function from_dir_to_file()
 
   if [ -d "${DOTFILE_DIRECTORY}/dots/$file" ]; then
 
-    local dir_path="dots/${file}*"
     local dir_path=$(shopt -s nullglob;shopt -s dotglob;echo ${DOTFILE_DIRECTORY}/dots/${file}*)
     sync_parent_dir="$file"
 
@@ -58,16 +57,6 @@ function from_dir_to_file()
 }
 
 
-#.art/ \
-#.gdbinit \
-#.gitattributes \
-#.gvimrc \
-#.hgignore \
-#.hushlogin \
-#.osx \
-#.osxconfig/ \
-#.tmux.conf \
-
 for file in \
 .appscripts/ \
 .bash/ \
@@ -79,9 +68,12 @@ for file in \
 .editorconfig \
 .gitconfig \
 .gitignore \
+.gvimrc \
+.hushlogin \
 .inputrc \
 .screenrc \
 .tmux.conf \
+.tmuxinator \
 .vim/ \
 .vimrc \
 .wgetrc \
