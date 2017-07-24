@@ -29,8 +29,17 @@
 	# do a commit
 	c ="commit"
 	cnv = "commit --no-verify"
+  cam = "commit -a -m"
 
   ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+
+  feat = "!sh $DOTFILE_DIRECTORY/git/branch-from-feature.sh"
+  cleanup = "!sh $DOTFILE_DIRECTORY/git/cleanup.sh"
+
+  ph = "!sh $DOTFILE_DIRECTORY/git/pu.sh"
+  pl = "!sh $DOTFILE_DIRECTORY/git/pull.sh"
+
+
 
 	# Show verbose output about tags, branches or remotes
 	tags = tag -l
@@ -192,9 +201,9 @@
 	trustExitCode = true
 [difftool "sourcetree"]
 	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = ~/Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	path =
+[mergetool "SOurcetree"]
+	cmd = ~/AppliCations/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [commit]
 	gpgsign = false
