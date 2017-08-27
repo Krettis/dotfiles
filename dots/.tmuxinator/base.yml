@@ -33,5 +33,5 @@ root: ~/
 windows:
   - start: pwd
   - brew: brew doctor
-  - dotfiles: dot && ll
+  - dotfiles: cd $DOTFILE_DIRECTORY && ll
   - htop: htop
